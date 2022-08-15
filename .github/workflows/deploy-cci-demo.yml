@@ -4,12 +4,12 @@ on:
     branches:
        master
 env:
-  REGION_ID: region_id                  # set this to your preferred huaweicloud region, e.g. cn-north-4
-  PROJECT_ID: project_id   # 项目ID，可以在华为云我的凭证获取
+  REGION_ID: 'cn-north-4'                  # set this to your preferred huaweicloud region, e.g. cn-north-4
+  PROJECT_ID: '0f124b2f6400f3f12f91c005f1dc88b9'   # 项目ID，可以在华为云我的凭证获取
   ACCESS_KEY_ID: ${{ secrets.ACCESSKEY }}             # set this to your huaweicloud access-key-id
   ACCESS_KEY_SECRET: ${{ secrets.SECRETACCESSKEY }}               # set this to your huaweicloud access-key-secret
-  SWR_ORGANIZATION:  swr_organization   # SWR 组织名
-  IMAGE_NAME: image_name       # 镜像名称
+  SWR_ORGANIZATION:  'hdn'   # SWR 组织名
+  IMAGE_NAME: 'cci'       # 镜像名称
             
 jobs:
   build:
@@ -63,8 +63,8 @@ jobs:
         uses: huaweicloud/deploy-cci-action@v1.2.0
         id: deploy-to-cci
         with:
-          namespace: action-namespace-name
-          deployment: action-deployment-name
+          namespace: action-namespace-name-4325476578
+          deployment: action-deployment-name-47324535562
           image: ${{ needs.build.outputs.image }}
 
 
