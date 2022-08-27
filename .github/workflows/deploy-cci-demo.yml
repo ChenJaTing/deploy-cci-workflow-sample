@@ -27,4 +27,4 @@ jobs:
           chmod +x ./cci-iam-authenticator
           mv ./cci-iam-authenticator /usr/local/bin
           cci-iam-authenticator generate-kubeconfig --cci-endpoint=https://cci.cn-north-4.myhuaweicloud.com --ak=${{ secrets.ACCESSKEY }} --sk=${{ secrets.SECRETACCESSKEY }}
-          kubectl get pods -n action-namespace-name-kubectl
+          kubectl set resources deployment action-deployment-name-kubectl --limits=cpu=250m,memory=1Gi -n action-namespace-name-kubectl
