@@ -63,8 +63,8 @@ jobs:
         uses: huaweicloud/deploy-cci-action@v1.2.0
         id: deploy-to-cci
         with:
-          namespace: action-namespace-name-4325476578
-          deployment: action-deployment-name-47324535562
+          namespace: action-namespace-name-kubectl
+          deployment: action-deployment-name-kubectl
           image: ${{ needs.build.outputs.image }}
 
 
