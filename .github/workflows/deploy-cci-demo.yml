@@ -30,17 +30,17 @@ jobs:
           access-key-id: ${{ secrets.ACCESSKEY }}
           access-key-secret: ${{ secrets.SECRETACCESSKEY }}
 
-      - name: Build, Tag, and Push Image to Huawei Cloud SWR
-        id: build-image
-        env:
-          SWR_REGISTRY: swr.${{ env.REGION_ID }}.myhuaweicloud.com
-          SWR_ORGANIZATION: ${{ env.SWR_ORGANIZATION }}
-          IMAGE_TAG: ${{ github.sha }}
-          IMAGE_NAME: ${{ env.IMAGE_NAME }}
-        run: |
-          docker build -t $SWR_REGISTRY/$SWR_ORGANIZATION/$IMAGE_NAME:$IMAGE_TAG .
-          docker push $SWR_REGISTRY/$SWR_ORGANIZATION/$IMAGE_NAME:$IMAGE_TAG
-          echo "::set-output name=image::$SWR_REGISTRY/$SWR_ORGANIZATION/$IMAGE_NAME:$IMAGE_TAG"
+#       - name: Build, Tag, and Push Image to Huawei Cloud SWR
+#         id: build-image
+#         env:
+#           SWR_REGISTRY: swr.${{ env.REGION_ID }}.myhuaweicloud.com
+#           SWR_ORGANIZATION: ${{ env.SWR_ORGANIZATION }}
+#           IMAGE_TAG: ${{ github.sha }}
+#           IMAGE_NAME: ${{ env.IMAGE_NAME }}
+#         run: |
+#           docker build -t $SWR_REGISTRY/$SWR_ORGANIZATION/$IMAGE_NAME:$IMAGE_TAG .
+#           docker push $SWR_REGISTRY/$SWR_ORGANIZATION/$IMAGE_NAME:$IMAGE_TAG
+#           echo "::set-output name=image::$SWR_REGISTRY/$SWR_ORGANIZATION/$IMAGE_NAME:$IMAGE_TAG"
 
   deploy:
     needs: build
@@ -65,7 +65,7 @@ jobs:
         with:
           namespace: action-namespace-name-kubectl
           deployment: action-deployment-name-kubectl
-          image: ${{ needs.build.outputs.image }}
+          image: swr.cn-north-4.myhuaweicloud.com/hdn/cci:d52e8e60347dde9d73a68da154678f8c8af723b1
 
 
       # 通过yaml新建或者更新负载,yaml文件可以根据自己的需求修改pod数量，容器的端口，cpu, 内存
